@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendyol Şikayet Merkezi | Trendyol</title>
+    <link rel="shortcut icon" href="https://cdn.dsmcdn.com/web/production/favicon.ico">
+    <style>
+        /* Trendyol Teması */
+        :root {
+            --ty-primary: #f84147;
+            --ty-secondary: #ffd300;
+            --ty-dark: #1a1a1a;
+            --ty-light: #f5f5f5;
+            --ty-gray: #666;
+            --ty-success: #4caf50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--ty-light);
+            color: var(--ty-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Trendyol Header */
+        .ty-header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .ty-header-container {
+            display: flex;
+            align-items: center;
+            height: 72px;
+        }
+        
+        .ty-logo {
+            margin-right: 30px;
+        }
+        
+        .ty-logo img {
+            height: 32px;
+        }
+        
+        .ty-nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .ty-nav-item {
+            margin-right: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--ty-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ty-nav-item.active {
+            color: var(--ty-primary);
+        }
+        
+        .ty-nav-item:hover {
+            color: var(--ty-primary);
+        }
+        
+        .ty-user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .ty-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .ty-btn-outline {
+            border: 1px solid var(--ty-primary);
+            color: var(--ty-primary);
+            background: white;
+        }
+        
+        .ty-btn-outline:hover {
+            background-color: rgba(248, 65, 71, 0.05);
+        }
+        
+        .ty-btn-primary {
+            background-color: var(--ty-primary);
+            color: white;
+            border: none;
+        }
+        
+        .ty-btn-primary:hover {
+            background-color: #e6393f;
+        }
+        
+        /* Breadcrumb */
+        .ty-breadcrumb {
+            padding: 15px 0;
+            font-size: 13px;
+        }
+        
+        .ty-breadcrumb a {
+            color: var(--ty-gray);
+            text-decoration: none;
+        }
+        
+        .ty-breadcrumb a:hover {
+            color: var(--ty-primary);
+        }
+        
+        .ty-breadcrumb-separator {
+            margin: 0 8px;
+            color: #ccc;
+        }
+        
+        /* Hero Banner */
+        .ty-hero {
+            background-color: var(--ty-primary);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        
+        .ty-hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .ty-hero-subtitle {
+            font-size: 16px;
+            max-width: 600px;
+        }
+        
+        /* Complaint Dashboard */
+        .ty-dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        /* Sidebar */
+        .ty-sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .ty-sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ty-sidebar-menu {
+            list-style: none;
+        }
+        
+        .ty-sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .ty-sidebar-menu a {
+            display: block;
+            padding: 8px 10px;
+            color: var(--ty-dark);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .ty-sidebar-menu a:hover, 
+        .ty-sidebar-menu a.active {
+            background-color: rgba(248, 65, 71, 0.1);
+            color: var(--ty-primary);
+        }
+        
+        .ty-sidebar-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .ty-content {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        
+        .ty-content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ty-content-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        /* Complaint Form */
+        .ty-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .ty-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .ty-form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border 0.2s;
+        }
+        
+        .ty-form-control:focus {
+            outline: none;
+            border-color: var(--ty-primary);
+            box-shadow: 0 0 0 2px rgba(248, 65, 71, 0.2);
+        }
+        
+        .ty-form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .ty-form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+        
+        .ty-form-file {
+            padding: 10px;
+        }
+        
+        .ty-form-file-info {
+            font-size: 12px;
+            color: var(--ty-gray);
+            margin-top: 5px;
+        }
+        
+        .ty-order-lookup {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ty-order-lookup-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ty-order-lookup-title i {
+            margin-right: 10px;
+            color: var(--ty-primary);
+        }
+        
+        .ty-order-lookup-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Complaint List */
+        .ty-complaint-list {
+            list-style: none;
+        }
+        
+        .ty-complaint-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .ty-complaint-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ty-complaint-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .ty-complaint-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--ty-dark);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .ty-complaint-title:hover {
+            color: var(--ty-primary);
+        }
+        
+        .ty-complaint-meta {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: var(--ty-gray);
+        }
+        
+        .ty-complaint-meta span {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ty-complaint-meta i {
+            margin-right: 5px;
+        }
+        
+        .ty-complaint-excerpt {
+            color: var(--ty-gray);
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .ty-complaint-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .ty-status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .ty-status-resolved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .ty-status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Footer */
+        .ty-footer {
+            background-color: var(--ty-dark);
+            color: white;
+            padding: 50px 0 30px;
+            font-size: 14px;
+        }
+        
+        .ty-footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .ty-footer-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .ty-footer-links {
+            list-style: none;
+        }
+        
+        .ty-footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .ty-footer-links a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .ty-footer-links a:hover {
+            color: white;
+        }
+        
+        .ty-footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ty-footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .ty-footer-social a {
+            color: white;
+            font-size: 20px;
+        }
+        
+        /* Modal */
+        .ty-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .ty-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .ty-modal-content {
+            background-color: white;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        
+        .ty-modal.active .ty-modal-content {
+            transform: translateY(0);
+        }
+        
+        .ty-modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ty-modal-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .ty-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--ty-gray);
+        }
+        
+        .ty-modal-body {
+            padding: 20px;
+        }
+        
+        .ty-modal-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .ty-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .ty-footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ty-header-container {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .ty-logo {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            
+            .ty-nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .ty-order-lookup-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .ty-footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ty-footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .ty-hero-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Trendyol Header -->
+    <header class="ty-header">
+        <div class="container ty-header-container">
+            <a href="https://www.trendyol.com" class="ty-logo">
+                <img src="https://cdn.dsmcdn.com/web/logo/ty-logo.svg" alt="Trendyol">
+            </a>
+            <nav class="ty-nav">
+                <a href="#" class="ty-nav-item active"><i class="fas fa-home"></i> Şikayet Merkezi</a>
+                <a href="#" class="ty-nav-item"><i class="fas fa-headset"></i> Yardım Merkezi</a>
+                <a href="#" class="ty-nav-item"><i class="fas fa-exchange-alt"></i> İade İşlemleri</a>
+                <a href="#" class="ty-nav-item"><i class="fas fa-box-open"></i> Siparişlerim</a>
+            </nav>
+            <div class="ty-user-actions">
+                <a href="#" class="ty-btn ty-btn-outline" id="ty-login-btn"><i class="fas fa-sign-in-alt"></i> Giriş Yap</a>
+                <a href="#" class="ty-btn ty-btn-primary" id="ty-register-btn"><i class="fas fa-user-plus"></i> Üye Ol</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="ty-breadcrumb container">
+        <a href="https://www.trendyol.com">Trendyol</a>
+        <span class="ty-breadcrumb-separator">/</span>
+        <a href="#">Yardım Merkezi</a>
+        <span class="ty-breadcrumb-separator">/</span>
+        <a href="#">Şikayet Merkezi</a>
+    </div>
+    
+    <!-- Hero Banner -->
+    <section class="ty-hero">
+        <div class="container">
+            <h1 class="ty-hero-title">Trendyol Şikayet Merkezi</h1>
+            <p class="ty-hero-subtitle">Trendyol ile ilgili yaşadığınız sorunları bize bildirin, en kısa sürede çözüm bulalım.</p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <div class="ty-dashboard">
+            <!-- Sidebar -->
+            <aside class="ty-sidebar">
+                <h3 class="ty-sidebar-title">Şikayet Yönetimi</h3>
+                <ul class="ty-sidebar-menu">
+                    <li><a href="#" class="active"><i class="fas fa-plus-circle"></i> Yeni Şikayet</a></li>
+                    <li><a href="#"><i class="fas fa-list"></i> Şikayetlerim</a></li>
+                    <li><a href="#"><i class="fas fa-check-circle"></i> Çözülenler</a></li>
+                    <li><a href="#"><i class="fas fa-hourglass-half"></i> Bekleyenler</a></li>
+                    <li><a href="#"><i class="fas fa-times-circle"></i> Reddedilenler</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Çözüm Merkezi</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Sık Sorulanlar</a></li>
+                </ul>
+            </aside>
+            
+            <!-- Content -->
+            <main class="ty-content">
+                <div class="ty-content-header">
+                    <h2 class="ty-content-title">Yeni Şikayet Oluştur</h2>
+                </div>
+                
+                <!-- Order Lookup -->
+                <div class="ty-order-lookup">
+                    <h4 class="ty-order-lookup-title"><i class="fas fa-search"></i> Sipariş Bilgisi</h4>
+                    <div class="ty-order-lookup-form">
+                        <input type="text" class="ty-form-control" placeholder="Sipariş Numarası">
+                        <button class="ty-btn ty-btn-primary">Sorgula</button>
+                    </div>
+                    <p style="font-size: 12px; color: var(--ty-gray); margin-top: 10px;">Sipariş numaranızı Trendyol hesabınızdan veya sipariş onay e-postanızdan öğrenebilirsiniz.</p>
+                </div>
+                
+                <!-- Complaint Form -->
+                <form id="ty-complaint-form">
+                    <div class="ty-form-group">
+                        <label for="complaint-type" class="ty-form-label">Şikayet Türü</label>
+                        <select id="complaint-type" class="ty-form-control ty-form-select" required>
+                            <option value="">Seçiniz</option>
+                            <option value="delivery">Teslimat Sorunu</option>
+                            <option value="product">Ürün Sorunu</option>
+                            <option value="seller">Satıcı Sorunu</option>
+                            <option value="payment">Ödeme Sorunu</option>
+                            <option value="return">İade/İptal Sorunu</option>
+                            <option value="other">Diğer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="complaint-title" class="ty-form-label">Şikayet Başlığı</label>
+                        <input type="text" id="complaint-title" class="ty-form-control" placeholder="Kısa ve açıklayıcı bir başlık girin" required>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="complaint-details" class="ty-form-label">Şikayet Detayları</label>
+                        <textarea id="complaint-details" class="ty-form-control ty-form-textarea" placeholder="Sorununuzu detaylı bir şekilde açıklayın" required></textarea>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="complaint-files" class="ty-form-label">Kanıtlar (Fotoğraf/Fatura vb.)</label>
+                        <input type="file" id="complaint-files" class="ty-form-control ty-form-file" multiple>
+                        <p class="ty-form-file-info">JPEG, PNG veya PDF formatında, maksimum 5MB boyutunda dosyalar yükleyebilirsiniz.</p>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label class="ty-form-label">Çözüm Beklentiniz</label>
+                        <div style="margin-top: 10px;">
+                            <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <input type="radio" name="solution" value="refund" style="margin-right: 10px;"> İade/Ücret iadesi
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <input type="radio" name="solution" value="replacement" style="margin-right: 10px;"> Değişim/Yeniden gönderim
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 10px;">
+                                <input type="radio" name="solution" value="compensation" style="margin-right: 10px;"> Tazminat
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="radio" name="solution" value="other" style="margin-right: 10px;"> Diğer
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="ty-form-group" style="margin-top: 30px;">
+                        <button type="submit" class="ty-btn ty-btn-primary" style="padding: 12px 24px; font-size: 16px;">
+                            <i class="fas fa-paper-plane"></i> Şikayeti Gönder
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+        
+        <!-- Recent Complaints -->
+        <div class="ty-content" style="margin-bottom: 50px;">
+            <div class="ty-content-header">
+                <h2 class="ty-content-title">Son Şikayetler</h2>
+                <a href="#" class="ty-btn ty-btn-outline">Tümünü Görüntüle</a>
+            </div>
+            
+            <ul class="ty-complaint-list" id="ty-complaint-list">
+                <!-- Complaint items will be added here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="ty-footer">
+        <div class="container">
+            <div class="ty-footer-grid">
+                <div>
+                    <h4 class="ty-footer-title">Trendyol</h4>
+                    <ul class="ty-footer-links">
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">Kariyer</a></li>
+                        <li><a href="#">İletişim</a></li>
+                        <li><a href="#">Trendyol Tech</a></li>
+                        <li><a href="#">Trendyol Express</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="ty-footer-title">Yardım</h4>
+                    <ul class="ty-footer-links">
+                        <li><a href="#">Sık Sorulan Sorular</a></li>
+                        <li><a href="#">Canlı Yardım</a></li>
+                        <li><a href="#">Nasıl İade Edebilirim?</a></li>
+                        <li><a href="#">İşlem Rehberi</a></li>
+                        <li><a href="#">Şikayet Merkezi</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="ty-footer-title">Kurumsal</h4>
+                    <ul class="ty-footer-links">
+                        <li><a href="#">Mesafeli Satış Sözleşmesi</a></li>
+                        <li><a href="#">Kullanım Koşulları</a></li>
+                        <li><a href="#">Gizlilik Politikası</a></li>
+                        <li><a href="#">Çerez Politikası</a></li>
+                        <li><a href="#">Bilgi Toplumu Hizmetleri</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="ty-footer-title">Bizi Takip Edin</h4>
+                    <ul class="ty-footer-links">
+                        <li><a href="#"><i class="fab fa-facebook" style="margin-right: 8px;"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter" style="margin-right: 8px;"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram" style="margin-right: 8px;"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube" style="margin-right: 8px;"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin" style="margin-right: 8px;"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="ty-footer-bottom">
+                <p>© 2023 Trendyol. Tüm hakları saklıdır.</p>
+                <div class="ty-footer-social">
+                    <a href="#"><i class="fab fa-apple"></i></a>
+                    <a href="#"><i class="fab fa-google-play"></i></a>
+                    <a href="#"><i class="fab fa-huawei"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Login Modal -->
+    <div class="ty-modal" id="ty-login-modal">
+        <div class="ty-modal-content">
+            <div class="ty-modal-header">
+                <h3 class="ty-modal-title">Trendyol'a Giriş Yap</h3>
+                <button class="ty-modal-close">&times;</button>
+            </div>
+            <div class="ty-modal-body">
+                <form id="ty-login-form">
+                    <div class="ty-form-group">
+                        <label for="login-email" class="ty-form-label">E-posta Adresi</label>
+                        <input type="email" id="login-email" class="ty-form-control" required>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="login-password" class="ty-form-label">Şifre</label>
+                        <input type="password" id="login-password" class="ty-form-control" required>
+                        <div style="text-align: right; margin-top: 5px;">
+                            <a href="#" style="font-size: 12px; color: var(--ty-primary);">Şifremi Unuttum</a>
+                        </div>
+                    </div>
+                    
+                    <div class="ty-form-group" style="margin-top: 25px;">
+                        <button type="submit" class="ty-btn ty-btn-primary" style="width: 100%; padding: 12px;">Giriş Yap</button>
+                    </div>
+                </form>
+                
+                <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+                    <p>Hesabınız yok mu? <a href="#" id="ty-show-register" style="color: var(--ty-primary); font-weight: 600;">Üye Olun</a></p>
+                </div>
+                
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h4 style="font-size: 14px; margin-bottom: 15px; text-align: center;">Hızlı Giriş</h4>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-google"></i> Google</button>
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-apple"></i> Apple</button>
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div class="ty-modal" id="ty-register-modal">
+        <div class="ty-modal-content">
+            <div class="ty-modal-header">
+                <h3 class="ty-modal-title">Trendyol'a Üye Ol</h3>
+                <button class="ty-modal-close">&times;</button>
+            </div>
+            <div class="ty-modal-body">
+                <form id="ty-register-form">
+                    <div class="ty-form-group">
+                        <label for="register-email" class="ty-form-label">E-posta Adresi</label>
+                        <input type="email" id="register-email" class="ty-form-control" required>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="register-password" class="ty-form-label">Şifre</label>
+                        <input type="password" id="register-password" class="ty-form-control" required>
+                        <p style="font-size: 12px; color: var(--ty-gray); margin-top: 5px;">En az 8 karakter, bir büyük harf ve bir sayı içermelidir.</p>
+                    </div>
+                    
+                    <div class="ty-form-group">
+                        <label for="register-password-confirm" class="ty-form-label">Şifre Tekrar</label>
+                        <input type="password" id="register-password-confirm" class="ty-form-control" required>
+                    </div>
+                    
+                    <div class="ty-form-group" style="margin-top: 25px;">
+                        <button type="submit" class="ty-btn ty-btn-primary" style="width: 100%; padding: 12px;">Üye Ol</button>
+                    </div>
+                </form>
+                
+                <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+                    <p>Zaten hesabınız var mı? <a href="#" id="ty-show-login" style="color: var(--ty-primary); font-weight: 600;">Giriş Yapın</a></p>
+                </div>
+                
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h4 style="font-size: 14px; margin-bottom: 15px; text-align: center;">Hızlı Üyelik</h4>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-google"></i> Google</button>
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-apple"></i> Apple</button>
+                        <button class="ty-btn ty-btn-outline" style="padding: 8px 15px;"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Modal İşlemleri
+        const loginBtn = document.getElementById('ty-login-btn');
+        const registerBtn = document.getElementById('ty-register-btn');
+        const loginModal = document.getElementById('ty-login-modal');
+        const registerModal = document.getElementById('ty-register-modal');
+        const closeModalBtns = document.querySelectorAll('.ty-modal-close');
+        const showRegister = document.getElementById('ty-show-register');
+        const showLogin = document.getElementById('ty-show-login');
+        
+        // Modal açma/kapatma fonksiyonları
+        function openModal(modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Event listeners
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(loginModal);
+        });
+        
+        registerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(registerModal);
+        });
+        
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modal = btn.closest('.ty-modal');
+                closeModal(modal);
+            });
+        });
+        
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(loginModal);
+            openModal(registerModal);
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeModal(registerModal);
+            openModal(loginModal);
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('ty-modal')) {
+                closeModal(e.target);
+            }
+        });
+        
+        // Örnek şikayet verileri
+        const sampleComplaints = [
+            {
+                id: 1,
+                title: "Siparişim 2 haftadır gelmedi",
+                excerpt: "15 gün önce verdiğim sipariş hala elime ulaşmadı. Kargo takip numarası verildi ancak kargo firması bilgi vermiyor.",
+                type: "Teslimat Sorunu",
+                date: "2023-05-20",
+                status: "pending",
+                comments: 3
+            },
+            {
+                id: 2,
+                title: "Yanlış beden ürün gönderildi",
+                excerpt: "Sipariş ettiğim M beden tişört yerine L beden gönderilmiş. Değişim talebi oluşturdum ancak henüz yanıt alamadım.",
+                type: "Ürün Sorunu",
+                date: "2023-05-18",
+                status: "pending",
+                comments: 1
+            },
+            {
+                id: 3,
+                title: "Defolu ürün gönderildi",
+                excerpt: "Aldığım ayakkabının sol teki yırtık geldi. Ürün görsellerdeki gibi değil. İade sürecini başlattım.",
+                type: "Ürün Sorunu",
+                date: "2023-05-15",
+                status: "resolved",
+                comments: 5
+            },
+            {
+                id: 4,
+                title: "Satıcı yanlış bilgi vermiş",
+                excerpt: "Satıcı ürünün orijinal olduğunu iddia etmişti ancak sahte çıktı. Ürün iadesi yapıldı ancak ödeme iadesi henüz gelmedi.",
+                type: "Satıcı Sorunu",
+                date: "2023-05-10",
+                status: "rejected",
+                comments: 8
+            }
+        ];
+        
+        // Şikayetleri listeye ekleme
+        const complaintList = document.getElementById('ty-complaint-list');
+        
+        function renderComplaints() {
+            complaintList.innerHTML = '';
+            
+            sampleComplaints.forEach(complaint => {
+                const statusClass = `ty-status-${complaint.status}`;
+                const statusText = complaint.status === 'pending' ? 'Beklemede' : 
+                                 complaint.status === 'resolved' ? 'Çözüldü' : 'Reddedildi';
+                
+                const complaintItem = document.createElement('li');
+                complaintItem.className = 'ty-complaint-item';
+                complaintItem.innerHTML = `
+                    <div class="ty-complaint-header">
+                        <div>
+                            <a href="#" class="ty-complaint-title">${complaint.title}</a>
+                            <div class="ty-complaint-meta">
+                                <span><i class="fas fa-tag"></i> ${complaint.type}</span>
+                                <span><i class="far fa-calendar-alt"></i> ${complaint.date}</span>
+                                <span><i class="far fa-comment"></i> ${complaint.comments} yorum</span>
+                            </div>
+                        </div>
+                        <span class="ty-complaint-status ${statusClass}">${statusText}</span>
+                    </div>
+                    <p class="ty-complaint-excerpt">${complaint.excerpt}</p>
+                `;
+                
+                complaintList.appendChild(complaintItem);
+            });
+        }
+        
+        // Form gönderimleri
+        document.getElementById('ty-complaint-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Şikayetiniz başarıyla gönderildi. En kısa sürede dönüş yapılacaktır.');
+            e.target.reset();
+        });
+        
+        document.getElementById('ty-login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Giriş başarılı! Yönlendiriliyorsunuz...');
+            closeModal(loginModal);
+            e.target.reset();
+        });
+        
+        document.getElementById('ty-register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Kayıt işlemi başarılı! Giriş yapabilirsiniz.');
+            closeModal(registerModal);
+            e.target.reset();
+        });
+        
+        // Sayfa yüklendiğinde şikayetleri render et
+        document.addEventListener('DOMContentLoaded', renderComplaints);
+    </script>
+</body>
+</html>
